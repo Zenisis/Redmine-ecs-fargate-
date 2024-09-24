@@ -37,4 +37,10 @@ resource "aws_ecs_service" "redmine" {
     security_groups  = [aws_security_group.redmine.id]
     assign_public_ip = true
   }
+  
+  load_balancer {
+    target_group_arn = aws_lb_target_group.redmine.arn
+    container_name   = "redmine"
+    container_port   = 3000
+  }
 }
