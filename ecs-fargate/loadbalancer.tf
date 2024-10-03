@@ -1,6 +1,6 @@
 resource "aws_lb" "redmine" {
   name               = "redmine-alb"
-  internal           = false
+  internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.redmine.id]
   subnets            = [aws_subnet.public_1.id, aws_subnet.public_2.id]
@@ -31,4 +31,15 @@ resource "aws_lb_listener" "redmine" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.redmine.arn
   }
+}
+
+resource "aws_lb_target_group_attachment" "redmine_nlb_tg_attachment" {
+  target_group_arn = aws_lb_target_group.redmine_nlb_tg.arn
+  target_id        = aws_lb.redmine.arn
+  port             = 80
+}
+
+resource "aws_eip_association" "redmine_eip_assoc" {
+  allocation_id = aws_eip.redmine_eip.id
+  network_interface_id = aws_lb.redmine_nlb.net_interface_id
 }
