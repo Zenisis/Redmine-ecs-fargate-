@@ -48,6 +48,16 @@ output "alb_dns_name" {
   description = "The DNS name of the Application Load Balancer"
 }
 
+output "eip_public_ip" {
+  value       = aws_eip.main.public_ip
+  description = "The public IP of the Elastic IP"
+}
+
+output "nlb_dns_name" {
+  value       = aws_lb.network.dns_name
+  description = "The DNS name of the Network Load Balancer"
+}
+
 output "alb_arn" {
   value       = aws_lb.redmine.arn
   description = "The ARN of the Application Load Balancer"
