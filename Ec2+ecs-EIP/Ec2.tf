@@ -1,7 +1,7 @@
 # EC2 Instance for ECS
 resource "aws_instance" "ecs_instance" {
-  ami           = "ami-0947d2ba12ee1ff75"  # Amazon ECS-Optimized Amazon Linux 2 AMI
-  instance_type = "t2.micro"
+  ami           = "ami-078264b8ba71bc45e"  # Amazon ECS-Optimized Amazon Linux 2 AMI
+  instance_type = "t3.micro"
   subnet_id     = data.aws_subnets.default.ids[0]
 
   vpc_security_group_ids = [aws_security_group.ecs_sg.id]
