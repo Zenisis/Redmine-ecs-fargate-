@@ -10,8 +10,8 @@ resource "aws_security_group" "redmine" {
       to_port     = 0
       protocol    = "-1" # Use "-1" for all protocols
       cidr_blocks = ["0.0.0.0/0"]
-    }
   }
+  
 
   egress {
     from_port   = 0
