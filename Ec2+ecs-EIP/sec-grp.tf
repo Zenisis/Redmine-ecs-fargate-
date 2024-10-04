@@ -22,3 +22,4 @@ resource "aws_security_group" "ecs_sg" {
   tags = {
     Name = "ec2_ecs-sg"
   }
+}
